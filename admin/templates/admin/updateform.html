@@ -1,0 +1,24 @@
+{% extends 'admin/layout.html' %}
+{%block content%}
+<!-- Update səhifəsindəki form -->
+<div class="card">
+    <div class="card-body">
+        <div class="card-title"><h6>Edit NavLinks</h6></div>
+        <div class="card-text">
+            <form action="/admin/navlinks/edit/{{query.id}}" method="POST">
+                {{navlinks.name(class_='form-control my-2 bg-light text-dark',value=query.nav_Name)}}
+                {{navlinks.url(class_='form-control my-2 bg-light',value=query.nav_URL)}}
+                {{navlinks.order(class_='form-control my-2 bg-light',value=query.nav_order)}}
+                <div class="form-check">
+                    {{navlinks.is_active(class="form-check-input")}}
+                    <label class="form-check-label" for="flexCheckDefault">
+                        <span><b>Menyuda aktiv edilsinmi?</b></span>
+                    </label>
+                  </div>
+                {{navlinks.submit(class_='form-control my-2 btn btn-success')}}
+                
+            </form>
+        </div>
+    </div>
+</div>
+{%endblock%}

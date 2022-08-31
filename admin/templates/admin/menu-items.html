@@ -1,0 +1,58 @@
+<!-- Lahiyənin Menu bölməsinin kateqoriyalarının view hissəsi -->
+{% extends 'admin/layout.html' %}
+{% block content %}
+    
+<!-- Add Menu Items -->
+<div class="card my-2">
+    <div class="card-body">
+      <div class="card-title"><h6>Add Menu Items </h6></div>
+        <p class="card-text">
+            <form action="/admin/menu-items" method="POST">
+                <select name="category" id="">
+                    <option value="#">Choose Category</option>
+                {% for category in menu_categories %}
+                    <option value="{{category.id}}">{{category.name}}</option>
+                {% endfor %}
+                </select>
+                {{myForms.names(class_='form-control my-2',placeholder='Name')}}
+                {{myForms.price(class_='form-control my-2',placeholder='Price')}}
+                {{myForms.info(class_='form-control my-2',placeholder='Info')}}
+                {{myForms.submit(class_='btn btn-danger')}}
+            </form>
+        </p>
+    </div>
+</div>
+<!-- Menu Items Table -->
+<div class="card">
+    <div class="card-body">
+        <div class="card-title">Menu Table</div>
+        <div class="card-text">
+            <table class="table table-success">
+                <caption>List of Menu</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">İnfo</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for category in categories%}
+                  <tr>
+                    <th scope="row">{{category.id}}</th>
+                    <td>{{category.name}}</td>
+                    <td>{{category.price}}</td>
+                    <td>{{category.info}}</td>
+                    <td>
+                      <a href="/admin/menu-items/delete/{{category.id}}">Delete</a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

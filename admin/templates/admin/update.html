@@ -1,0 +1,19 @@
+{% extends 'admin/layout.html' %}
+{%block content%}
+<!-- Update səhifəsindəki form -->
+<div class="card">
+    <div class="card-body">
+        <div class="card-title"><h6>Edit Product</h6></div>
+        <div class="card-text">
+            <form action="/admin/product/edit/{{data.id}}" method="POST">
+                {{product.productName(class_='form-control my-2 bg-light text-dark',placeholder='Name')}}
+                {{product.productPrice(class_='form-control my-2 bg-light',placeholder='Price')}}
+                {{product.productInfo(class_='form-control my-2 bg-light',placeholder='Information')}}
+                {{product.productSub(class_='form-control my-2 btn btn-success')}}
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{%endblock%}

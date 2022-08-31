@@ -1,0 +1,51 @@
+<!-- Lahiyənin Menu bölməsinin kateqoriyalarının view hissəsi -->
+{% extends 'admin/layout.html' %}
+{% block content %}
+    
+
+<!-- Menu səhifəsindəki form -->
+<div class="card my-2">
+    <div class="card-body">
+      <div class="card-title"><h6>Add Menu Category</h6></div>
+        <p class="card-text">
+            <form action="/admin/menu" method="POST">
+                {{myForm.name(class_='form-control my-2',placeholder='Click Here and Write')}}
+                {{myForm.order(class_='form-control my-2',placeholder='Order')}}
+                {{myForm.submit(class_='btn btn-primary')}}
+            </form>
+        </p>
+    </div>
+</div>
+
+  <!-- Menu səhifəsindəki Table -->
+  <div class="card">
+    <div class="card-body">
+        <div class="card-title">Menu Table</div>
+        <div class="card-text">
+            <table class="table table-success">
+                <caption>List of Menu</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Order</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for category in categories%}
+                  <tr>
+                    <th scope="row">{{category.id}}</th>
+                    <td>{{category.name}}</td>
+                    <td>{{category.order}}</td>
+                    <td>
+                      <a href="/admin/menu/delete/{{category.id}}">Delete</a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

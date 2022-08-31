@@ -1,0 +1,57 @@
+{% extends 'admin/layout.html' %}
+{% block content %}
+<!-- Navbarform səhifəsindəki form -->
+    <div class="card my-2">
+        <div class="card-body">
+          <div class="card-title"><h6>Add Link</h6></div>
+            <p class="card-text">
+                <form action="/admin/navlinks" method="POST">
+                    {{navLinksForm.name(class_='form-control my-2 bg-light text-dark',placeholder=' Name')}}
+                    {{navLinksForm.url(class_='form-control my-2 bg-light text-dark',placeholder=' Url')}}
+                    {{navLinksForm.order(class_='form-control my-2 bg-light text-dark',placeholder=' Order')}}
+                    <div class="form-check my-4">
+                    {{navLinksForm.is_active(class_='form-check-input',placeholder=' Order')}}
+                        <label class="form-check-label" for="defaultCheck1">
+                        </label>
+                        <span><i><b>Menyuda aktiv edilsinmi?</b></i></span>
+                      </div>
+                    {{navLinksForm.submit(class_='btn btn-dark')}}
+                </form>
+            </p>
+        </div>
+    </div>
+  <!-- navbarform səhifəsindəki Table -->
+    <div class="card">
+        <div class="card-body">
+            <div class="card-title">Navbar Table</div>
+            <div class="card-text">
+                <table class="table table-success">
+                    <caption>List of Navbar Links</caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col"> Name</th>
+                        <th scope="col">URL</th>
+                        <th scope="col">Active</th>
+                        <th scope="col">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {% for navlink in navlinks%}
+                      <tr>
+                        <th scope="row">{{navlink.id}}</th>
+                        <td>{{navlink.nav_Name}}</td>
+                        <td>{{navlink.nav_URL}}</td>
+                        <td>{{navlink.is_active}}</td>
+                        <td>
+                          <a href="/admin/navlinks/edit/{{navlink.id}}">Edit</a>
+                          <a href="/admin/navlinks/delete/{{navlink.id}}">Delete</a>
+                        </td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

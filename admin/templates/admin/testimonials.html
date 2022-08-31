@@ -1,0 +1,69 @@
+<!-- Lahiyənin Testimonials bölməsinin View hissəsinin yazılması -->
+{% extends 'admin/layout.html' %}
+{% block content %}
+<!-- Lahiyənin Testimonials bölməsi Form -->
+
+<div class="card">
+    <div class="card-body">
+        <div class="title">
+            <h5>Add Testimonials</h5>
+        </div>
+        <div class="card-text">
+            <form action="/admin/testimonials" method="POST"  enctype="multipart/form-data">
+                {{myForm.name(class_=('form-control my-2'),placeholder='Add Name')}}
+                {{myForm.profession(class_=('form-control my-2'),placeholder='Add Profession')}}
+                {{myForm.img(class_=('form-control my-2'),placeholder='Add Photo')}}
+                {{myForm.info(class_=('form-control my-2'),placeholder='Add Info')}}           
+                {{myForm.order(class_=('form-control my-2'),placeholder='Order')}}
+                <div class="form-check">
+                    {{myForm.is_active(class_=('form-check-input'))}}
+                    <label class="form-check-label" for="flexCheckDefault">
+                        <span><b>Səhifədə aktiv edilsinmi?</b></span>
+                    </label>
+                  </div>
+                  {{myForm.submit(class_='form-control my-2 btn btn-success')}}
+            </form>
+        </div>
+    </div>
+</div>
+
+  <!-- Testimonials hissəsinin Table -->
+
+<div class="card">
+    <div class="card-body">
+        <div class="card-title">Testimonials Table</div>
+        <div class="card-text">
+            <table class="table table-success">
+                <caption>List of Testimonials</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Profession</th>
+                    <th scope="col">Info</th>
+                    <th scope="col">Photo</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for data in data%}
+                  <tr>
+                    <th scope="row">{{data.id}}</th>
+                    <td>{{data.name}}</td>
+                    <td>{{data.profession}}</td>
+                    <td>
+                        <img src="/admin/static/uploads/{{data.img}}" alt="" style="width:100px; height:100px; object-fit:cover">
+                    </td>
+                    <td>{{datainfo}}</td>
+                    <td>
+                      <a href="/admin/testimonials/edit/{{data.id}}" class="btn stretched-link">Edit</a>
+                      <a href="/admin/testimonials/delete/{{data.id}}" class="btn stretched-link">Delete</a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
