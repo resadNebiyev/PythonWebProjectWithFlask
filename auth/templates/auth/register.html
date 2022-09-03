@@ -1,0 +1,10 @@
+{% extends 'auth/layout.html' %}
+{% block content %}
+<form method="POST" action="{{url_for('auth.register')}}">
+{{registerForm.name(class_='form-control my-3',placeholder='Name')}}
+{{registerForm.email(class_='form-control my-3',placeholder='Email')}}
+{{registerForm.passward(class_='form-control my-3',placeholder='Passward')}}
+{{registerForm.info(class_='form-control my-3',placeholder='Info')}}
+{{registerForm.submit(class_='btn btn-danger')}}
+</form>
+{% endblock %}

@@ -1,3 +1,4 @@
+
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -18,12 +19,18 @@ db = SQLAlchemy(main, metadata=metadata)
 migrate = Migrate(main, db, render_as_batch=True)
 
 from app import app_bp 
+
 from app.routes import *
 from admin.routes import *
+from auth.routes import *
 
+
+from auth import auth_bp
 
 main.register_blueprint(app_bp)
 main.register_blueprint(admin_bp)
+main.register_blueprint(auth_bp)
+
 
 
 if __name__ =="__main__":

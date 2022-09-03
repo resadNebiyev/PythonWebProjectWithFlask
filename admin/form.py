@@ -1,5 +1,3 @@
-from re import I
-from unicodedata import name
 from flask_wtf import FlaskForm
 from wtforms import StringField,SubmitField,TextAreaField,IntegerField,BooleanField,FileField
 

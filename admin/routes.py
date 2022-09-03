@@ -5,7 +5,6 @@ import os
 import random
 
 from admin.form import MenuItemsForm
-from model import Member
 
 # Admin tərəfinə giriş
 
@@ -228,12 +227,18 @@ def chefs_delete(id):
     db.session.commit()
     return redirect('/admin/chefs')
     
-@admin_bp.route('/chefs/images')
+@admin_bp.route('/chefs/images',methods=['GET','POST'])
 def chefs_images():
     from model import Member,MemberImg
     from admin.form import MemberİmgForm
     memberForm = MemberİmgForm()
     members = Member.query.all()
     memberImgs = MemberImg.query.all()
+    if request.method=='POST':
+        file = request.files['img']
+        filename = secure_filename(file.filename)
+        extension = filename.rsplit('.',1)[1]
+        new_filename = f'-{random.randint(1,100)}.{extension}'
+        
     return render_template('admin/MemberImg.html',members=members,memberForm=memberForm,memberImgs=memberImgs)
     

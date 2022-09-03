@@ -1,4 +1,3 @@
-
 from run import db,main
 
 
@@ -51,4 +50,13 @@ class MemberImg(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100))
     member_id = db.Column(db.Integer, db.ForeignKey('member.id'))
+
+# Saytda Qeydiyatdan Keçən İstifadəçilərin Məlumatlarının Modeli
+
+class Users(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(120))
+    email = db.Column(db.String(150))
+    passward = db.Column(db.String(100))
+    info = db.Column(db.Text)
     

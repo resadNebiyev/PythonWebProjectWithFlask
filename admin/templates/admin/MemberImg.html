@@ -5,7 +5,7 @@
         <div class="card-body">
           <div class="card-title"><h6>Add Member Image</h6></div>
             <p class="card-text">
-                <form action="/admin/chefs/images" method="POST" enctype="multipart/form-data"> 
+                <form action="{{url_for('/admin/chefs/images')}}" method="POST" enctype="multipart/form-data"> 
                     <select name="category" id="">
                       <option value="">Choose Member</option>
                       {% for member in members %}
