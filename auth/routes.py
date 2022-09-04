@@ -24,6 +24,7 @@ def login():
 def register():
     registerForm = RegisterForm()
     from model import Users,db
+    users=Users.query.all()
     if request.method =='POST':
         password = registerForm.passward.data
         if len(password) >=5 and len(password)<= 10:
@@ -33,6 +34,13 @@ def register():
                     db.session.add(user)
                     db.session.commit()
                     return redirect('/auth/login')
-    return render_template('auth/register.html',registerForm=registerForm)
+    return render_template('auth/register.html',registerForm=registerForm,users=users)
 
 
+@auth_bp.route('/delete/<id>',methods=['GET','POST'])
+def delete(id):
+    from model import Users,db
+    query = Users.query.get(id)
+    db.session.delete(query)
+    db.session.commit()
+    return redirect('/auth/register')

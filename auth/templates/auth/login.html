@@ -3,10 +3,7 @@
 <form action="{{url_for('auth.login')}}" method="POST">
     {{loginForm.email(class_='form-control my-3',placeholder='Email')}}
     {{loginForm.passward(class_='form-control my-3',placeholder='passward')}}
-    {{loginForm.submit(class_='btn btn-danger')}}
+    {{loginForm.submit(class_='btn btn-primary')}}
+    <a href="{{url_for('auth.index')}}" class="btn btn-danger">Go Back</a>
 </form>
-{% for item in test %}
-    <p>item.name</p>
-    <h3>test</h3>
-{% endfor %}
 {% endblock %}

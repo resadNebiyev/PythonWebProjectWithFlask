@@ -1,10 +1,47 @@
 {% extends 'auth/layout.html' %}
 {% block content %}
-<form method="POST" action="{{url_for('auth.register')}}">
-{{registerForm.name(class_='form-control my-3',placeholder='Name')}}
-{{registerForm.email(class_='form-control my-3',placeholder='Email')}}
-{{registerForm.passward(class_='form-control my-3',placeholder='Passward')}}
-{{registerForm.info(class_='form-control my-3',placeholder='Info')}}
-{{registerForm.submit(class_='btn btn-danger')}}
-</form>
+<div class="card">
+    <div class="card-body">
+        <form method="POST" action="{{url_for('auth.register')}}">
+            {{registerForm.name(class_='form-control my-3',placeholder='Name')}}
+            {{registerForm.email(class_='form-control my-3',placeholder='Email')}}
+            {{registerForm.passward(class_='form-control my-3',placeholder='Passward')}}
+            {{registerForm.info(class_='form-control my-3',placeholder='Info')}}
+            {{registerForm.submit(class_='btn btn-danger')}} <br><br>
+            <h6>If You Have Account? <a href="{{url_for('auth.login')}}">Click</a></h6>
+        </form>          
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <div class="card-title">Users Table</div>
+        <div class="card-text">
+            <table class="table table-success">
+                <caption>List of Users</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">User name</th>
+                    <th scope="col">User email</th>
+                    <th scope="col">User info</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>    
+                <tbody>
+                    {% for user in users%}
+                  <tr>
+                    <th scope="row">{{user.id}}</th>
+                    <td>{{user.name}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.info}}</td>
+                    <td>
+                      <a href="{{url_for('auth.delete',id=user.id)}}">Delete</a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
 {% endblock %}

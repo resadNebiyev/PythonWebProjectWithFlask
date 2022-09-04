@@ -32,6 +32,8 @@ main.register_blueprint(admin_bp)
 main.register_blueprint(auth_bp)
 
 
-
+@main.route('/')
+def index():
+    return redirect('/auth/')
 if __name__ =="__main__":
     main.run(debug=True)
