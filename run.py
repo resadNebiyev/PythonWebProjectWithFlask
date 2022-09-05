@@ -1,8 +1,20 @@
-
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from flask_bcrypt import Bcrypt
+from flask_login import LoginManager
+
 main = Flask(__name__)
+
+# Configuring app with Flask Login
+login_manager = LoginManager()
+login_manager.init_app(main)
+@login_manager.user_loader
+def load_user(user_id):
+    from model import Users
+    return Users.query.get(user_id)
+
+bcrypt = Bcrypt(main)
 main.config['SECRET_KEY']="secretkey"
 main.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tesst.db'
 from sqlalchemy import MetaData
@@ -19,7 +31,6 @@ db = SQLAlchemy(main, metadata=metadata)
 migrate = Migrate(main, db, render_as_batch=True)
 
 from app import app_bp 
-
 from app.routes import *
 from admin.routes import *
 from auth.routes import *

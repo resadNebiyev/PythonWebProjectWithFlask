@@ -1,6 +1,5 @@
 from run import db,main
-
-
+from flask_login import UserMixin
 class Product(db.Model):
     id =db.Column(db.Integer, primary_key=True)
     productName = db.Column(db.String(180))
@@ -53,7 +52,7 @@ class MemberImg(db.Model):
 
 # Saytda Qeydiyatdan Keçən İstifadəçilərin Məlumatlarının Modeli
 
-class Users(db.Model):
+class Users(UserMixin,db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120))
     email = db.Column(db.String(150))

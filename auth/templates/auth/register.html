@@ -23,7 +23,7 @@
                     <th scope="col">Id</th>
                     <th scope="col">User name</th>
                     <th scope="col">User email</th>
-                    <th scope="col">User info</th>
+                    <th scope="col">User password</th>
                     <th scope="col">Actions</th>
                   </tr>
                 </thead>    
@@ -33,7 +33,7 @@
                     <th scope="row">{{user.id}}</th>
                     <td>{{user.name}}</td>
                     <td>{{user.email}}</td>
-                    <td>{{user.info}}</td>
+                    <td>{{user.passward}}</td>
                     <td>
                       <a href="{{url_for('auth.delete',id=user.id)}}">Delete</a>
                     </td>

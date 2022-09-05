@@ -3,14 +3,21 @@ from admin import admin_bp
 from werkzeug.utils import secure_filename
 import os
 import random
-
-from admin.form import MenuItemsForm
+from flask_login import login_required,logout_user
 
 # Admin tərəfinə giriş
 
 @admin_bp.route('/')
+@login_required
 def index():
     return render_template('admin/index.html')
+
+@admin_bp.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect('/auth/')
+
 
 # Admin hissəsinin product routu
 
