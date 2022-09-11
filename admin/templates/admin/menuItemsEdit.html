@@ -7,21 +7,27 @@
     <div class="card-body">
       <div class="card-title"><h6>Add Menu Items </h6></div>
         <p class="card-text">
-            <form action="/admin/menu-items" method="POST">
+            <form action="/admin/menu-items/{{query.id}}" method="POST">
                 <select name="category" id="">
                     <option value="#">Choose Category</option>
                 {% for category in menu_categories %}
                     <option value="{{category.id}}">{{category.name}}</option>
                 {% endfor %}
                 </select>
-                {{myForms.names(class_='form-control my-2',placeholder='Name')}}
+                {{myForms.names(class_='form-control my-2',placeholder='Name',query.name)}}
                 {{myForms.price(class_='form-control my-2',placeholder='Price')}}
                 {{myForms.info(class_='form-control my-2',placeholder='Info')}}
                 {{myForms.submit(class_='btn btn-danger')}}
             </form>
         </p>
     </div>
-</div>
+</div>  
+
+
+
+
+
+
 <!-- Menu Items Table -->
 <div class="card">
     <div class="card-body">
@@ -48,7 +54,6 @@
                     <td>{{category.category.name}}</td>
                     <td>{{category.info}}</td>
                     <td>
-                      <a href="/admin/menu-items/edit/{{category.id}}">Edit</a>
                       <a href="/admin/menu-items/delete/{{category.id}}">Delete</a>
                     </td>
                   </tr>

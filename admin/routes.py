@@ -1,11 +1,11 @@
-from flask import render_template,request,redirect
+from flask import render_template,request,redirect,url_for
 from admin import admin_bp
 from werkzeug.utils import secure_filename
 import os
 import random
 from flask_login import login_required,logout_user
 
-# Admin tərəfinə giriş
+# Admin tərəfinə giriş və çıxış 
 
 @admin_bp.route('/')
 @login_required
@@ -124,7 +124,13 @@ def testimonials():
             extension = filename.rsplit('.',1)[1]
             new_filename = f'testimonials_photo-{random.randint(1,100)}.{extension}'
             if extension in main.config['ALLOWED_EXTENSIONS']:
-                file.save(os.path.join('/static/uploads/',new_filename))
+                path = f"C:\\Users\\user\\Documents\\PythonWebProjectWithFlasks\\static\\uploads"
+                os.chdir(path)
+                new_folder = 'Testimonials'
+                new_folder_path = f'C:/Users/user/Documents/PythonWebProjectWithFlasks/static/uploads/{new_folder}/'
+                if os.path.exists(new_folder_path)!=True:
+                    os.mkdir(new_folder)
+                file.save(os.path.join(f'C:/Users/user/Documents/PythonWebProjectWithFlasks/static/uploads/{new_folder}/',new_filename))
                 name=myForm.name.data
                 info=myForm.info.data
                 profession=myForm.profession.data
@@ -137,6 +143,15 @@ def testimonials():
                 return redirect('/admin/testimonials')
     return render_template('admin/testimonials.html',myForm=myForm,data=data)
 
+@admin_bp.route('/testimonials/delete/<id>',methods=['GET','POST'])
+def testimonials_del(id):
+    from run import db,main
+    from model import Testimonials
+    query = Testimonials.query.get(id)
+    db.session.delete(query)
+    db.session.commit()
+    return redirect(url_for('admin.testimonials'))
+    
 # Lahiyənin Menu bölməsinin Hazırlanması
 
 @admin_bp.route('/menu',methods=['GET','POST'])
@@ -153,6 +168,8 @@ def menu():
         db.session.commit()
         return redirect('/admin/menu')
     return render_template('admin/menu.html',myForm=myForm,categories=categories)
+
+
 
 # Lahiyənin Menu bölməsinin Elementlərinin Hazırlanması
 
@@ -175,6 +192,16 @@ def menuItems():
         return redirect('/admin/menu-items')
     return render_template('admin/menu-items.html',myForms=myForm,categories=categories,menu_categories=menu_categories)
 
+# Lahiyənin Menu bölməsinin Elementlərinin edit edilməsi
+
+@admin_bp.route('/menu-items/edit/<id>')
+def edit_menu(id):
+    from admin.form import MenuItemsForm
+    myForms = MenuItemsForm()
+    from model import CategoryItems
+    query = CategoryItems.query.get(id)
+    return render_template('admin/menuItemsEdit.html',query=query,myForms=myForms)
+    
 # Lahiyənin Menu bölməsinin Silinməsi
 
 @admin_bp.route('/menu/delete/<id>',methods=['GET','POST'])
@@ -211,11 +238,11 @@ def chefs():
         filename = secure_filename(file.filename)
         extension = filename.rsplit('.',1)[1]
         new_filename = f'Member-{random.randint(1,100)}.{extension}'
-        path = f"C:\\Users\\user\\Documents\\PythonWebProjectWithFlask\\static\\uploads"
+        path = f"C:\\Users\\user\\Documents\\PythonWebProjectWithFlasks\\static\\uploads"
         os.chdir(path)
         new_folder = f'{name}'
         os.mkdir(new_folder)
-        file.save(os.path.join(f"C:\\Users\\user\\Documents\\PythonWebProjectWithFlask\\static\\uploads\\{new_folder}",new_filename))
+        file.save(os.path.join(f"C:\\Users\\user\\Documents\\PythonWebProjectWithFlasks\\static\\uploads\\{new_folder}",new_filename))
         img = new_filename
         member_data = Member(name=name,profession=profession,img=img,info=info)
         db.session.add(member_data)
@@ -233,19 +260,29 @@ def chefs_delete(id):
     db.session.delete(member)
     db.session.commit()
     return redirect('/admin/chefs')
-    
+
+# Lahiyənin Şef bölməsinin Üzvlərinin Şəkillərinin əlavə edilməsi
+
 @admin_bp.route('/chefs/images',methods=['GET','POST'])
 def chefs_images():
-    from model import Member,MemberImg
+    from model import Member,MemberImg,db
     from admin.form import MemberİmgForm
     memberForm = MemberİmgForm()
     members = Member.query.all()
-    memberImgs = MemberImg.query.all()
+    memberImgs = MemberImg.query.all() 
     if request.method=='POST':
         file = request.files['img']
         filename = secure_filename(file.filename)
         extension = filename.rsplit('.',1)[1]
-        new_filename = f'-{random.randint(1,100)}.{extension}'
+        new_filename = f'img-{random.randint(1,100)}.{extension}'
+        categoryId = request.form.get('category')
+        member = Member.query.filter_by(id = categoryId).first()
+        print(member.name)
+        file.save(os.path.join(f"C:\\Users\\user\\Documents\\PythonWebProjectWithFlasks\\static\\uploads\\{member.name}",new_filename))
+        name = new_filename
+        memberId = categoryId
+        item = MemberImg(name=name,member_id = memberId)
+        db.session.add(item)
+        db.session.commit()
         
     return render_template('admin/MemberImg.html',members=members,memberForm=memberForm,memberImgs=memberImgs)
-    
