@@ -59,3 +59,13 @@ class Users(UserMixin,db.Model):
     passward = db.Column(db.String(100))
     info = db.Column(db.Text)
     
+# Events section 
+
+class Events(db.Model):
+    id = db.Column(db.Integer,primary_key=True)
+    title = db.Column(db.String(120))
+    price = db.Column(db.Integer)
+    info = db.Column(db.Text)
+    img = db.Column(db.String(100))
+
+    

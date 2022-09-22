@@ -12,22 +12,36 @@
 #                 x += 1
 #         return result
 
-nums = {
-    "I":1,
-    "V":5,
-    "X":10,
-    "L":50,
-    "C":100,
-    "D":500,
-    "M":1000
-}
+# nums = {
+#     "I":1,
+#     "V":5,
+#     "X":10,
+#     "L":50,
+#     "C":100,
+#     "D":500,
+#     "M":1000
+# }
 
-target = input('Ədəd daxil edin: ')
-result=[]
-cem=0
-for i in range(len(target)):
-    if i+1 < len(target) and nums[target[i]]>=nums[target[i+1]]: 
-        cem+=nums[target[i]]
-print(cem)
+# target = 'XII'
+# result=[]
+# cem=0
 
-            
+# for i in range(len(target)):
+#     if target == nums[target]:
+
+
+
+
+# Solition
+
+# def check():
+#     if not S: return ''
+#     m, M, i = min(S), max(S), 0
+#     for i in range(min(len(m),len(M))): #2
+#         if m[i] != M[i]: break
+#     else: i += 1
+#     return m[:i] 
+# print(check())
+
+
+       

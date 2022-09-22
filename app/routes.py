@@ -1,5 +1,4 @@
 from flask import render_template
-from admin.routes import testimonials
 from app import app_bp
 
 @app_bp.route('/')

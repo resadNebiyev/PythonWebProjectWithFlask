@@ -32,10 +32,10 @@ migrate = Migrate(main, db, render_as_batch=True)
 
 from app import app_bp 
 from app.routes import *
-from admin.routes import *
+from admin.routs import *
 from auth.routes import *
 
-
+from admin import admin_bp
 from auth import auth_bp
 
 main.register_blueprint(app_bp)

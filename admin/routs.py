@@ -1,10 +1,4 @@
-from flask import render_template,request,redirect,url_for
-from admin import admin_bp
-from werkzeug.utils import secure_filename
-import os
-import random
-from flask_login import login_required,logout_user
-
+from admin.routes import *
 # Admin tərəfinə giriş və çıxış 
 
 @admin_bp.route('/')
@@ -21,7 +15,6 @@ def logout():
 
 # Admin hissəsinin product routu
 
-@admin_bp.route('/product',methods=['GET','POST'])
 def product():
     from model import db,Product
     from admin.form import Products
@@ -270,6 +263,8 @@ def chefs_images():
     memberForm = MemberİmgForm()
     members = Member.query.all()
     memberImgs = MemberImg.query.all() 
+    a =['s','ds']
+    memberForm.cat.choices = [a] 
     if request.method=='POST':
         file = request.files['img']
         filename = secure_filename(file.filename)

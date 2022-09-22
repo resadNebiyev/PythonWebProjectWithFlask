@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField,SubmitField,TextAreaField,IntegerField,BooleanField,FileField
+from wtforms import StringField,SubmitField,TextAreaField,IntegerField,BooleanField,FileField,SelectField
 
 class Products(FlaskForm):
     productName = StringField('name')
@@ -48,5 +48,13 @@ class MemberForm(FlaskForm):
 # Lahiyənin Şef bölməsinin Şəkillərinin Formunun yaradılması
 
 class MemberİmgForm(FlaskForm):
+    cat = SelectField('cat',choices=[])
     img = FileField('img')
     submit = SubmitField('Add')
+
+
+class EventsForm(FlaskForm):
+    title = StringField('title')
+    price = IntegerField('price')
+    info = TextAreaField('info')
+    img = FileField('img')

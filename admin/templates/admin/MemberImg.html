@@ -6,14 +6,9 @@
           <div class="card-title"><h6>Add Member Image</h6></div>
             <p class="card-text">
                 <form action="{{url_for('admin.chefs_images')}}" method="POST" enctype="multipart/form-data"> 
-                    <select name="category" id="">
-                      <option value="">Choose Member</option>
-                      {% for member in members %}
-                      <option value="{{member.id}}">{{member.name}}</option>
-                      {% endfor %}
-                    </select>
-                    {{memberForm.img(class_='form-control my-2',placeholder=' Name')}} 
-                    {{memberForm.submit(class_='btn btn-primary',value='Add Member')}}
+                  {{memberForm.cat}}
+                  {{memberForm.img(class_='form-control my-2',placeholder=' Name')}} 
+                  {{memberForm.submit(class_='btn btn-primary',value='Add Member')}}
                 </form>
             </p>
         </div>
