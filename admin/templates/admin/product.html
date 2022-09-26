@@ -6,6 +6,7 @@
           <div class="card-title"><h6>Add Product</h6></div>
             <p class="card-text">
                 <form action="/admin/product" method="POST">
+                    {{ ckeditor.load() }}
                     {{products.productName(class_='form-control my-2',placeholder='Product Name')}} 
                     {{products.productPrice(class_='form-control my-2',placeholder='Product Price')}}
                     {{products.productInfo(class_='form-control my-2',placeholder='Product Info')}}
@@ -36,7 +37,7 @@
                         <th scope="row">{{data.id}}</th>
                         <td>{{data.productName}}</td>
                         <td>{{data.productPrice}}</td>
-                        <td>{{data.producutInfo}}</td>
+                        <td>{{data.producutInfo| safe}}</td>
                         <td>
                           <a href="/admin/product/edit/{{data.id}}">Edit</a>
                           <a href="/admin/product/delete/{{data.id}}">Delete</a>

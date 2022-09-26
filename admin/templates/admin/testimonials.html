@@ -40,8 +40,8 @@
                     <th scope="col">Id</th>
                     <th scope="col">Name</th>
                     <th scope="col">Profession</th>
-                    <th scope="col">Info</th>
                     <th scope="col">Photo</th>
+                    <th scope="col">Info</th>
                     <th scope="col">Actions</th>
                   </tr>
                 </thead>
@@ -54,7 +54,7 @@
                     <td>
                         <img src="/static/uploads/testimonials/{{data.img}}" alt="" style="width:100px; height:100px; object-fit:cover">
                     </td>
-                    <td>{{datainfo}}</td>
+                    <td>{{data.info| safe}}</td>
                     <td>
                       <a href="/admin/testimonials/edit/{{data.id}}" class="btn stretched-link">Edit</a>
                       <a href="/admin/testimonials/delete/{{data.id}}" class="btn stretched-link">Delete</a>

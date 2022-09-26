@@ -1,10 +1,10 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField,SubmitField,TextAreaField,IntegerField,BooleanField,FileField,SelectField
-
+from flask_ckeditor import CKEditorField
 class Products(FlaskForm):
     productName = StringField('name')
     productPrice = StringField('price')
-    productInfo = TextAreaField()
+    productInfo = CKEditorField()
     productSub = SubmitField('Submit')
 
 class NavLinksForm(FlaskForm):
@@ -18,7 +18,7 @@ class NavLinksForm(FlaskForm):
 class testimonialForm(FlaskForm):
     name = StringField('name')
     profession = StringField('profession')
-    info = StringField('info')
+    info = CKEditorField('info')
     order = IntegerField('order')
     img = FileField('img')
     is_active = BooleanField('is_active')
@@ -34,7 +34,7 @@ class MenuForm(FlaskForm):
 class MenuItemsForm(FlaskForm):
     names = StringField('name')
     price = IntegerField('price')
-    info = StringField('info')
+    info = CKEditorField('info')
     submit = SubmitField('submit')
 
 # Lahiyənin Şef bölməsinin Formunun yaradılması
@@ -42,7 +42,7 @@ class MemberForm(FlaskForm):
     name = StringField('name')
     profession = StringField('profession')
     img = FileField('img')
-    info = TextAreaField('info')
+    info = CKEditorField('info')
     submit = SubmitField('submit')
     
 # Lahiyənin Şef bölməsinin Şəkillərinin Formunun yaradılması
@@ -56,5 +56,5 @@ class MemberİmgForm(FlaskForm):
 class EventsForm(FlaskForm):
     title = StringField('title')
     price = IntegerField('price')
-    info = TextAreaField('info')
+    info = CKEditorField('info')
     img = FileField('img')

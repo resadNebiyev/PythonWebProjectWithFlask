@@ -54,7 +54,7 @@
                     <td>{{category.name}}</td>
                     <td>{{category.price}}</td>
                     <td>{{category.category.name}}</td>
-                    <td>{{category.info}}</td>
+                    <td>{{category.info|safe}}</td>
                     <td>
                       <a href="/admin/menu-items/delete/{{category.id}}">Delete</a>
                     </td>

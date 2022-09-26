@@ -11,3 +11,5 @@ Mako==1.2.1
 MarkupSafe==2.1.1
 SQLAlchemy==1.4.39
 Werkzeug==2.2.1
+Flask-Login
+flask-ckeditor==0.4.6

@@ -1,10 +1,15 @@
+from multiprocessing import context
 from admin.routes import *
 # Admin tərəfinə giriş və çıxış 
 
 @admin_bp.route('/')
 @login_required
 def index():
-    return render_template('admin/index.html')
+    context = {
+        'title':'Admin Panel',
+        'user' : current_user
+    }
+    return render_template('admin/index.html',**context)
 
 @admin_bp.route('/logout')
 @login_required
@@ -14,7 +19,7 @@ def logout():
 
 
 # Admin hissəsinin product routu
-
+@admin_bp.route('/product/',methods=['GET','POST'])
 def product():
     from model import db,Product
     from admin.form import Products
@@ -23,7 +28,7 @@ def product():
     if request.method =='POST':
         productName = products.productName.data
         productPrice = products.productPrice.data
-        productInfo = products.productInfo.data
+        productInfo = products.productInfo.data  
         productM=Product(productName=productName,productPrice=productPrice,producutInfo=productInfo)
         db.session.add(productM)
         db.session.commit()

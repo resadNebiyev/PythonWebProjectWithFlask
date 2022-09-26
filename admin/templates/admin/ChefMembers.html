@@ -40,7 +40,7 @@
                         <td>{{member.name}}</td>
                         <td>{{member.profession}}</td>
                         <td>{{member.img}}</td>
-                        <td>{{member.info}}</td>
+                        <td>{{member.info|safe}}</td>
                         <td>
                           <a href="/admin/chefs/edit/{{member.id}}">Edit</a>
                           <a href="/admin/chefs/delete/{{member.id}}">Delete</a>
