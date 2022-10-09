@@ -1,14 +1,14 @@
-from multiprocessing import context
 from admin.routes import *
 # Admin tərəfinə giriş və çıxış 
-
 @admin_bp.route('/')
 @login_required
 def index():
+    from model import Users
     context = {
         'title':'Admin Panel',
-        'user' : current_user
-    }
+        'user' : current_user,
+        'users': Users.query.all(),
+        }
     return render_template('admin/index.html',**context)
 
 @admin_bp.route('/logout')
@@ -17,7 +17,14 @@ def logout():
     logout_user()
     return redirect('/auth/')
 
-
+@admin_bp.route('/user/approve/<id>')
+@login_required
+def approve(id):
+    from model import Users,db
+    user = Users.query.filter_by(id=id).first()
+    user.is_active=True
+    db.session.commit()
+    return redirect('/')
 # Admin hissəsinin product routu
 @admin_bp.route('/product/',methods=['GET','POST'])
 def product():
@@ -192,21 +199,33 @@ def menuItems():
 
 # Lahiyənin Menu bölməsinin Elementlərinin edit edilməsi
 
-@admin_bp.route('/menu-items/edit/<id>')
+@admin_bp.route('/menu-items/edit/<id>',methods=['GET','POST'])
 def edit_menu(id):
     from admin.form import MenuItemsForm
     myForms = MenuItemsForm()
-    from model import CategoryItems
+    from model import CategoryItems,Category,db
+    menu_categories = Category.query.all()
     query = CategoryItems.query.get(id)
-    return render_template('admin/menuItemsEdit.html',query=query,myForms=myForms)
+    if request.method =='POST':
+        categoryId = request.form.get('category')
+        query.name=myForms.names.data
+        query.info=myForms.price.data
+        query.price=myForms.info.data
+        query.category_id=categoryId
+        db.session.commit()
+        return redirect('/admin/menu-items')
+    return render_template('admin/menuItemsEdit.html',query=query,myForms=myForms,menu_categories=menu_categories)
     
 # Lahiyənin Menu bölməsinin Silinməsi
 
 @admin_bp.route('/menu/delete/<id>',methods=['GET','POST'])
 def menu_delete(id):
-    from model import Category,db
+    from model import Category,db,CategoryItems
     query = Category.query.get(id)
+    query2 = CategoryItems.query.filter_by(category_id=id).first()
     db.session.delete(query)
+    if query2:
+        db.session.delete(query2)
     db.session.commit()
     return redirect('/admin/menu')
 
@@ -248,6 +267,7 @@ def chefs():
         return redirect('/admin/chefs')
     return render_template('admin/ChefMembers.html',member=member,members=members)
 
+
 # Lahiyənin Şef bölməsinin Üzvlərinin Tam Silinməsi
 
 @admin_bp.route('/chefs/delete/<id>',methods=['GET','POST'])
@@ -284,5 +304,5 @@ def chefs_images():
         item = MemberImg(name=name,member_id = memberId)
         db.session.add(item)
         db.session.commit()
-        
     return render_template('admin/MemberImg.html',members=members,memberForm=memberForm,memberImgs=memberImgs)
+

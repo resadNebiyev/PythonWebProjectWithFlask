@@ -58,3 +58,6 @@ class EventsForm(FlaskForm):
     price = IntegerField('price')
     info = CKEditorField('info')
     img = FileField('img')
+
+# Lahiyənin About bölməsinin Formunun yaradılması
+

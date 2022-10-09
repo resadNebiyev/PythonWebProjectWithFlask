@@ -14,12 +14,16 @@ def index():
 def login():
     from run import  bcrypt
     loginForm = LoginForm()
-    from model import Users
+    from model import Users,db
+    admin = Users.query.filter_by(id=1).first()
+    user  = Users.query.filter_by(email=loginForm.email.data).first()
     if request.method=='POST':
-        user  = Users.query.filter_by(email=loginForm.email.data).first()
-        if bcrypt.check_password_hash(user.passward,loginForm.passward.data):   
-            login_user(user)
+        if bcrypt.check_password_hash(admin.passward,loginForm.passward.data) and admin.is_active==True: 
+            login_user(admin)
             return redirect('/admin/')
+        elif bcrypt.check_password_hash(user.passward,loginForm.passward.data) and user.is_active==True:   
+            login_user(user)
+            return redirect('sss')
     return render_template('auth/login.html',loginForm=loginForm)
 
 # Istifadəçilərin qeydiyyatdan keçməsi
@@ -36,7 +40,7 @@ def register():
             if any(char.isupper() for char in password):
                 if any(char.islower() for char in password):
                     pw_hash = bcrypt.generate_password_hash(password)
-                    user = Users(name=registerForm.name.data,email=registerForm.email.data,passward = pw_hash,info=registerForm.info.data)
+                    user = Users(name=registerForm.name.data,email=registerForm.email.data,passward = pw_hash,info=registerForm.info.data,is_active=False)
                     db.session.add(user)
                     db.session.commit()
                     return redirect('/auth/login')

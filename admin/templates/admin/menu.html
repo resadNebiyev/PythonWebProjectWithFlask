@@ -39,7 +39,7 @@
                     <td>{{category.name}}</td>
                     <td>{{category.order}}</td>
                     <td>
-                      <a href="/admin/menu/delete/{{category.id}}">Delete</a>
+                      <a href="/admin/menu/delete/{{category.id}}" onclick="myFunction()">Delete</a>
                     </td>
                   </tr>
                   {% endfor %}
@@ -48,4 +48,10 @@
         </div>
     </div>
 </div>
+<script>
+  function myFunction() {
+    confirm('Kateqoriyanı silsəniz həmin kateqoriyaya məxsus bütün məhsullar silinəcəkdir!')
+  }
+  </script>
 {% endblock %}
+

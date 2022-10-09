@@ -28,6 +28,7 @@ class Category(db.Model):
     name = db.Column(db.String(50))
     order = db.Column(db.Integer)
     categories = db.relationship('CategoryItems', backref='category', lazy=True)
+    
 
 class CategoryItems(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -58,6 +59,7 @@ class Users(UserMixin,db.Model):
     email = db.Column(db.String(150))
     passward = db.Column(db.String(100))
     info = db.Column(db.Text)
+    is_active = db.Column(db.Boolean())
     
 # Events section 
 
