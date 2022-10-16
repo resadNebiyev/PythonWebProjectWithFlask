@@ -10,7 +10,6 @@
         <p class="card-text">
             <form action="/admin/menu" method="POST">
                 {{myForm.name(class_='form-control my-2',placeholder='Click Here and Write')}}
-                {{myForm.order(class_='form-control my-2',placeholder='Order')}}
                 {{myForm.submit(class_='btn btn-primary')}}
             </form>
         </p>
@@ -28,7 +27,6 @@
                   <tr>
                     <th scope="col">Id</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Order</th>
                     <th scope="col">Actions</th>
                   </tr>
                 </thead>
@@ -37,7 +35,6 @@
                   <tr>
                     <th scope="row">{{category.id}}</th>
                     <td>{{category.name}}</td>
-                    <td>{{category.order}}</td>
                     <td>
                       <a href="/admin/menu/delete/{{category.id}}" onclick="myFunction()">Delete</a>
                     </td>

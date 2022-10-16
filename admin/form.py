@@ -45,12 +45,7 @@ class MemberForm(FlaskForm):
     info = CKEditorField('info')
     submit = SubmitField('submit')
     
-# Lahiyənin Şef bölməsinin Şəkillərinin Formunun yaradılması
 
-class MemberİmgForm(FlaskForm):
-    cat = SelectField('cat',choices=[])
-    img = FileField('img')
-    submit = SubmitField('Add')
 
 
 class EventsForm(FlaskForm):
@@ -61,3 +56,11 @@ class EventsForm(FlaskForm):
 
 # Lahiyənin About bölməsinin Formunun yaradılması
 
+class AboutForm(FlaskForm):
+    img = FileField('img')
+    
+class RecommendsForm(FlaskForm):
+    number = IntegerField('number')
+    title = StringField('title')
+    text = StringField('text')
+    

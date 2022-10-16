@@ -1,0 +1,17 @@
+{% extends 'admin/layout.html' %}
+{% block content %}
+<div class="card my-2">
+    <div class="card-body">
+      <div class="card-title"><h6>Add Member</h6></div>
+        <p class="card-text">
+            <form action="/admin/chefs/edit/{{members.id}}" method="POST" enctype="multipart/form-data"> 
+                {{member.name(class_='form-control my-2',placeholder=' Name',value=members.name)}} 
+                {{member.profession(class_='form-control my-2',placeholder='Profession',value=members.profession)}} 
+                {{member.img(class_='form-control my-2',placeholder='Img')}}
+                {{member.info(class_='form-control my-2',placeholder='info')}}
+                {{member.submit(class_='btn btn-primary',value='Add Member')}}
+            </form>
+        </p>
+    </div>
+</div>
+{% endblock %}

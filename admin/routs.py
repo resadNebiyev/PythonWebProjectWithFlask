@@ -1,5 +1,10 @@
+from genericpath import isdir
+from re import template
 from admin.routes import *
+import os
 # Admin tərəfinə giriş və çıxış 
+
+
 @admin_bp.route('/')
 @login_required
 def index():
@@ -167,8 +172,7 @@ def menu():
     myForm=MenuForm()
     if request.method=='POST':
         name = myForm.name.data
-        order = myForm.order.data
-        category = Category(name=name,order=order)
+        category = Category(name=name)
         db.session.add(category)
         db.session.commit()
         return redirect('/admin/menu')
@@ -267,6 +271,35 @@ def chefs():
         return redirect('/admin/chefs')
     return render_template('admin/ChefMembers.html',member=member,members=members)
 
+# Lahiyənin Şef bölməsinin Üzvlərinin Tam Silinməsi
+
+@admin_bp.route('/chefs/edit/<id>',methods=['GET','POST'])
+def chefs_edit(id):
+    from model import Member,db
+    from admin.form import MemberForm
+    member = MemberForm()
+    members = Member.query.get(id)
+    if request.method=='POST':
+        members.name = member.name.data
+        members.profession = member.profession.data
+        members.info = member.info.data
+        file = request.files['img']
+        filename = secure_filename(file.filename)
+        extension = filename.rsplit('.',1)[1]
+        new_filename = f'Member-{random.randint(1,100)}.{extension}'
+        path = f"C:\\Users\\user\\Documents\\PythonWebProjectWithFlasks\\static\\uploads"
+        os.chdir(path)
+        if os.path.exists("{path}/{members.name}"):
+            file.save(os.path.join(f"C:\\Users\\user\\Documents\\PythonWebProjectWithFlasks\\static\\uploads\\{members.name}",new_filename))
+        else:
+            new_folder = f'{members.name}'
+            os.mkdir(new_folder)
+            file.save(os.path.join(f"C:\\Users\\user\\Documents\\PythonWebProjectWithFlasks\\static\\uploads\\{members.name}",new_filename))
+        members.img = new_filename
+        db.session.commit()
+        return redirect('/admin/chefs')
+    return render_template('/admin/editChefs.html',member=member,members=members) 
+
 
 # Lahiyənin Şef bölməsinin Üzvlərinin Tam Silinməsi
 
@@ -280,29 +313,4 @@ def chefs_delete(id):
     return redirect('/admin/chefs')
 
 # Lahiyənin Şef bölməsinin Üzvlərinin Şəkillərinin əlavə edilməsi
-
-@admin_bp.route('/chefs/images',methods=['GET','POST'])
-def chefs_images():
-    from model import Member,MemberImg,db
-    from admin.form import MemberİmgForm
-    memberForm = MemberİmgForm()
-    members = Member.query.all()
-    memberImgs = MemberImg.query.all() 
-    a =['s','ds']
-    memberForm.cat.choices = [a] 
-    if request.method=='POST':
-        file = request.files['img']
-        filename = secure_filename(file.filename)
-        extension = filename.rsplit('.',1)[1]
-        new_filename = f'img-{random.randint(1,100)}.{extension}'
-        categoryId = request.form.get('category')
-        member = Member.query.filter_by(id = categoryId).first()
-        print(member.name)
-        file.save(os.path.join(f"C:\\Users\\user\\Documents\\PythonWebProjectWithFlasks\\static\\uploads\\{member.name}",new_filename))
-        name = new_filename
-        memberId = categoryId
-        item = MemberImg(name=name,member_id = memberId)
-        db.session.add(item)
-        db.session.commit()
-    return render_template('admin/MemberImg.html',members=members,memberForm=memberForm,memberImgs=memberImgs)
 

@@ -1,4 +1,3 @@
-
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -51,6 +50,8 @@ main.register_blueprint(auth_bp)
 @main.route('/')
 def index():
     return redirect(url_for('admin.index'))
+
+
 if __name__ =="__main__":
     main.run(debug=True)
     

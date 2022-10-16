@@ -1,3 +1,4 @@
+import numbers
 from run import db,main
 from flask_login import UserMixin
 class Product(db.Model):
@@ -69,5 +70,15 @@ class Events(db.Model):
     price = db.Column(db.Integer)
     info = db.Column(db.Text)
     img = db.Column(db.String(100))
+   
+# About section  
 
+class Abouts(db.Model):
+    id = db.Column(db.Integer,primary_key=True) 
+    img = db.Column(db.String(100))
     
+class Recommends(db.Model):
+    id = db.Column(db.Integer,primary_key=True) 
+    number = db.Column(db.Integer)
+    title = db.Column(db.String(150))
+    text = db.Column(db.String(200))
