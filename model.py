@@ -1,5 +1,5 @@
 import numbers
-from run import db,main
+from run import db,main,ma
 from flask_login import UserMixin
 class Product(db.Model):
     id =db.Column(db.Integer, primary_key=True)
@@ -29,6 +29,11 @@ class Category(db.Model):
     name = db.Column(db.String(50))
     order = db.Column(db.Integer)
     categories = db.relationship('CategoryItems', backref='category', lazy=True)
+class CategorySchema(ma.SQLAlchemySchema):
+    class Meta:
+        model:Category
+        fields = ("id","name")
+        include_relationship = True
     
 
 class CategoryItems(db.Model):
@@ -37,6 +42,11 @@ class CategoryItems(db.Model):
     info = db.Column(db.String(120))
     price = db.Column(db.Integer)
     category_id = db.Column(db.Integer, db.ForeignKey('category.id'))
+class CategoryItemsSchema(ma.SQLAlchemySchema):
+    class Meta:
+        model:CategoryItems
+        fields = ("id","name","category_id")
+        include_relationship = True
 
 # Lahiyənin Şef bölməsinin  Modelinin yaradılması
 class Member(db.Model):

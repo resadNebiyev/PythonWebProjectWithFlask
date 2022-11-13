@@ -1,5 +1,3 @@
-from genericpath import isdir
-from re import template
 from admin.routes import *
 import os
 # Admin tərəfinə giriş və çıxış 

@@ -4,7 +4,10 @@ from flask_migrate import Migrate
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_ckeditor import CKEditor
+from flask_marshmallow import Marshmallow
 main = Flask(__name__)
+ma = Marshmallow(main)
+
 main.config['CKEDITOR_PKG_TYPE'] = 'basic'
 ckeditor = CKEditor(main)
 # Configuring app with Flask Login
@@ -38,14 +41,14 @@ from app import app_bp
 from app.routes import *
 from admin.routs import *
 from auth.routes import *
-
+from api.routes import *
 from admin import admin_bp
 from auth import auth_bp
-
+from api import api_bp
 main.register_blueprint(app_bp)
 main.register_blueprint(admin_bp)
 main.register_blueprint(auth_bp)
-
+main.register_blueprint(api_bp)
 
 @main.route('/')
 def index():
