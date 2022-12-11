@@ -3,7 +3,7 @@
 <!-- Navbarform səhifəsindəki form -->
     <div class="card my-2">
         <div class="card-body">
-          <div class="card-title"><h6>Add Link</h6></div>
+          <div class="card-title"><h6>Menyu Əlavə Et</h6></div>
             <p class="card-text">
                 <form action="/admin/navlinks" method="POST">
                     {{navLinksForm.name(class_='form-control my-2 bg-light text-dark',placeholder=' Name')}}
@@ -23,17 +23,16 @@
   <!-- navbarform səhifəsindəki Table -->
     <div class="card">
         <div class="card-body">
-            <div class="card-title">Navbar Table</div>
+            <div class="card-title">Menyu Cədvəli</div>
             <div class="card-text">
                 <table class="table table-success">
-                    <caption>List of Navbar Links</caption>
                     <thead>
                       <tr>
                         <th scope="col">Id</th>
-                        <th scope="col"> Name</th>
+                        <th scope="col"> Ad</th>
                         <th scope="col">URL</th>
-                        <th scope="col">Active</th>
-                        <th scope="col">Actions</th>
+                        <th scope="col">Aktivdir</th>
+                        <th scope="col">Əməliyyatlar</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -44,8 +43,9 @@
                         <td>{{navlink.nav_URL}}</td>
                         <td>{{navlink.is_active}}</td>
                         <td>
-                          <a href="/admin/navlinks/edit/{{navlink.id}}">Edit</a>
-                          <a href="/admin/navlinks/delete/{{navlink.id}}">Delete</a>
+                          <a href="/admin/navlinks/edit/{{navlink.id}}">Dəyiş</a>
+                          <span>/</span>
+                          <a href="/admin/navlinks/delete/{{navlink.id}}">Sil</a>
                         </td>
                       </tr>
                       {% endfor %}

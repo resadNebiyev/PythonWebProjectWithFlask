@@ -1,0 +1,21 @@
+{% extends 'admin/layout.html' %}
+{%block content%}
+<!--Topbar Update səhifəsindəki form -->
+<div class="card">
+    <div class="card-body">
+        <div class="card-title"><h6>Üst Menyu Bölməsi Üzərində Dəyişikliklər</h6></div>
+        <div class="card-text">
+            <form action="/admin/topbar/update/{{query.id}}" method="POST">
+                {{myForms.number(class_='form-control my-2 bg-light text-dark',value=query.number)}}
+                {{myForms.date(class_='form-control my-2 bg-light',value=query.date)}}
+                {{myForms.whatsappLink(class_='form-control my-2 bg-light',value=query.wpLink)}}
+                {{myForms.instagramLink(class_='form-control my-2 bg-light',value=query.insLink)}}
+                {{myForms.tiktokLink(class_='form-control my-2 bg-light',value=query.tikLink)}}                
+                {{myForms.submit(class_='form-control my-2 btn btn-success')}}
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{%endblock%}

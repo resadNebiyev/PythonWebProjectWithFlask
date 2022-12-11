@@ -1,0 +1,62 @@
+<!-- Lahiyənin topbar bölməsinin kateqoriyalarının view hissəsi -->
+{% extends 'admin/layout.html' %}
+{% block content %}
+    
+
+<!-- topbar səhifəsindəki form -->
+<div class="card my-2">
+    <div class="card-body">
+      <div class="card-title"><h6>Üst menyu hissəsinin doldurulması</h6></div>
+        <p class="card-text">
+            <form action="/admin/topbar" method="POST">
+                {{myForm.number(class_='form-control my-2',placeholder='Nömrəni əlavə edin')}}
+                {{myForm.date(class_='form-control my-2',placeholder='Açılma və qapanma vaxtını əlavə edin')}}
+                {{myForm.whatsappLink(class_='form-control my-2',placeholder='Whatsapp nömrəsini əlavə edin')}}
+                {{myForm.instagramLink(class_='form-control my-2',placeholder='İnstagram adresini əlavə edin')}}
+                {{myForm.tiktokLink(class_='form-control my-2',placeholder='Tiktok adresini əlavə edin')}}
+                {{myForm.submit(class_='btn btn-primary')}}
+            </form>
+        </p>
+    </div>
+</div>
+
+  <!-- topbar səhifəsindəki Table -->
+  <div class="card">
+    <div class="card-body">
+        <div class="card-title">Üst Menyu Cədvəli</div>
+        <div class="card-text">
+            <table class="table table-success">
+                <thead>
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nömrə</th>
+                    <th scope="col">Tarix</th>
+                    <th scope="col">Wp Link</th>
+                    <th scope="col">Instagram Link</th>
+                    <th scope="col">Tiktok Link</th>
+                    <th scope="col">Düzəlişlər</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for item in topbar%}
+                  <tr>
+                    <th scope="row">{{item.id}}</th>
+                    <th scope="row">{{item.number}}</th>
+                    <th scope="row">{{item.date}}</th>
+                    <th scope="row">{{item.wpLink}}</th>
+                    <th scope="row">{{item.insLink}}</th>
+                    <th scope="row">{{item.tikLink}}</th>
+                    <td>
+                      <a href="/admin/topbar/update/{{item.id}}">Dəyiş |</a>
+                      <a href="/admin/topbar/delete/{{item.id}}">Sil</a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+

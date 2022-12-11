@@ -16,20 +16,16 @@ def login():
     loginForm = LoginForm()
     from model import Users,db
     admin = Users.query.filter_by(id=1).first()
-    user  = Users.query.filter_by(email=loginForm.email.data).first()
     if request.method=='POST':
-        if bcrypt.check_password_hash(admin.passward,loginForm.passward.data) and admin.is_active==True: 
+        if bcrypt.check_password_hash(admin.passward,loginForm.passward.data) and admin.email==loginForm.email.data: 
             login_user(admin)
             return redirect('/admin/')
-        elif bcrypt.check_password_hash(user.passward,loginForm.passward.data) and user.is_active==True:   
-            login_user(user)
-            return redirect('sss')
     return render_template('auth/login.html',loginForm=loginForm)
 
 # Istifadəçilərin qeydiyyatdan keçməsi
 
-@auth_bp.route('/register',methods=['GET','POST'])
-def register():
+# @auth_bp.route('/register',methods=['GET','POST'])
+# def register():
     from run import bcrypt
     registerForm = RegisterForm()
     from model import Users,db

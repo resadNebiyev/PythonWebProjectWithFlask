@@ -5,18 +5,19 @@
 <!-- Add Menu Items -->
 <div class="card my-2">
     <div class="card-body">
-      <div class="card-title"><h6>Add Menu Items </h6></div>
+      <div class="card-title"><h6>Yağ kateqoriyalarına uyğun məhsulların əlavə edilməsi</h6></div>
         <p class="card-text">
-            <form action="/admin/menu-items" method="POST">
+            <form action="/admin/menu-items" method="POST" enctype="multipart/form-data">
                 <select name="category" id="">
-                    <option value="#">Choose Category</option>
+                    <option value="#">Kateqoriya seçin</option>
                 {% for category in menu_categories %}
                     <option value="{{category.id}}">{{category.name}}</option>
                 {% endfor %}
                 </select>
-                {{myForms.names(class_='form-control my-2',placeholder='Name')}}
-                {{myForms.price(class_='form-control my-2',placeholder='Price')}}
-                {{myForms.info(class_='form-control my-2',placeholder='Info')}}
+                {{myForms.names(class_='form-control my-2',placeholder='Ad')}}
+                {{myForms.price(class_='form-control my-2',placeholder='Qiymət')}}
+                {{myForms.info(class_='form-control my-2',placeholder='Əlavə məlumat')}}
+                {{myForms.img(class_='form-control my-2')}}
                 {{myForms.submit(class_='btn btn-danger')}}
             </form>
         </p>
@@ -25,18 +26,17 @@
 <!-- Menu Items Table -->
 <div class="card">
     <div class="card-body">
-        <div class="card-title">Menu Table</div>
+        <div class="card-title">Yağ cədvəli</div>
         <div class="card-text">
             <table class="table table-success">
-                <caption>List of Menu</caption>
                 <thead>
                   <tr>
                     <th scope="col">Id</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Category</th>
-                    <th scope="col">Info</th>
-                    <th scope="col">Actions</th>
+                    <th scope="col">Ad</th>
+                    <th scope="col">Qiymət</th>
+                    <th scope="col">İnfo</th>
+                    <th scope="col">Şəkil</th>
+                    <th scope="col">Əməliyyatlar</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -45,11 +45,13 @@
                     <th scope="row">{{category.id}}</th>
                     <td>{{category.name}}</td>
                     <td>{{category.price}}</td>
-                    <td>{{category.category.name}}</td>
-                    <td>{{category.info|safe}}</td>
                     <td>
-                      <a href="/admin/menu-items/edit/{{category.id}}">Edit</a>
-                      <a href="/admin/menu-items/delete/{{category.id}}">Delete</a>
+                      <img width="50px" height="50px" src="/static/uploads/Liquids/{{category.img}}" alt="">
+                    </td>
+                    <td>{{category.category.name}}</td>
+                    <td>
+                      <a style="color:blue;" href="/admin/menu-items/edit/{{category.id}}">Dəyiş /</a>
+                      <a style="color:red;" href="/admin/menu-items/delete/{{category.id}}"> Sil</a>
                     </td>
                   </tr>
                   {% endfor %}

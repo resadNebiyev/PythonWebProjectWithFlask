@@ -6,14 +6,16 @@
 <div class="card">
     <div class="card-body">
         <div class="title">
-            <h5>Add Testimonials</h5>
+            <h5>Mağazaların əlavə edilməsi</h5>
         </div>
         <div class="card-text">
-            <form action="/admin/testimonials" method="POST"  enctype="multipart/form-data">
-                {{myForm.name(class_=('form-control my-2'),placeholder='Add Name')}}
-                {{myForm.profession(class_=('form-control my-2'),placeholder='Add Profession')}}
-                {{myForm.img(class_=('form-control my-2'),placeholder='Add Photo')}}
-                {{myForm.info(class_=('form-control my-2'),placeholder='Add Info')}}           
+            <form action="/admin/shops" method="POST"  enctype="multipart/form-data">
+                {{myForm.name(class_=('form-control my-2'),placeholder='Ad əlavə et')}}
+                {{myForm.location(class_=('form-control my-2'),placeholder='Ünvanı əlavə et')}}
+                {{myForm.time(class_=('form-control my-2'),placeholder='Vaxt əlavə et')}}  
+                {{myForm.wpLink(class_=('form-control my-2'),placeholder='Wp linkini əlavə et')}}
+                {{myForm.instaLink(class_=('form-control my-2'),placeholder='Instagram linki əlavə et')}}
+                {{myForm.map(class_=('form-control my-2'),placeholder='Google map əlavə et')}}         
                 {{myForm.order(class_=('form-control my-2'),placeholder='Order')}}
                 <div class="form-check">
                     {{myForm.is_active(class_=('form-check-input'))}}
@@ -31,18 +33,15 @@
 
 <div class="card">
     <div class="card-body">
-        <div class="card-title">Testimonials Table</div>
+        <div class="card-title">Qeydə alınmış mağazalar</div>
         <div class="card-text">
             <table class="table table-success">
                 <caption>List of Testimonials</caption>
                 <thead>
                   <tr>
                     <th scope="col">Id</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Profession</th>
-                    <th scope="col">Photo</th>
-                    <th scope="col">Info</th>
-                    <th scope="col">Actions</th>
+                    <th scope="col">Ad</th>
+                    <th scope="col">Əməliyyatlar</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -50,14 +49,9 @@
                   <tr>
                     <th scope="row">{{data.id}}</th>
                     <td>{{data.name}}</td>
-                    <td>{{data.profession}}</td>
                     <td>
-                        <img src="/static/uploads/testimonials/{{data.img}}" alt="" style="width:100px; height:100px; object-fit:cover">
-                    </td>
-                    <td>{{data.info| safe}}</td>
-                    <td>
-                      <a href="/admin/testimonials/edit/{{data.id}}" class="btn stretched-link">Edit</a>
-                      <a href="/admin/testimonials/delete/{{data.id}}" class="btn stretched-link">Delete</a>
+                      <a style="color:blue;" href="/admin/shops/edit/{{data.id}}" class="btn stretched-link">Dəyiş</a>
+                      <a style="color:red;" href="/admin/shops/delete/{{data.id}}" class="btn stretched-link">Sil</a>
                     </td>
                   </tr>
                   {% endfor %}

@@ -86,6 +86,7 @@ h6 {
 # Back to top button
 --------------------------------------------------------------*/
 .back-to-top {
+  background-color: green;
   position: fixed;
   visibility: hidden;
   opacity: 0;
@@ -269,15 +270,15 @@ h6 {
   align-items: center;
   justify-content: space-between;
   padding: 10px 0 10px 30px;
-  color: #fff;
+  color: #d9ba85;
   white-space: nowrap;
   transition: 0.3s;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .navbar a i,
 .navbar a:focus i {
-  font-size: 12px;
+  font-size: 15px;
   line-height: 0;
   margin-left: 5px;
 }
@@ -382,7 +383,7 @@ h6 {
   right: 0;
   left: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(240, 231, 231, 0.9);
   transition: 0.3s;
   z-index: 999;
 }
@@ -402,7 +403,7 @@ h6 {
   left: 15px;
   padding: 10px 0;
   border-radius: 6px;
-  background-color: #fff;
+  background-color: rgb(0, 0, 0);
   overflow-y: auto;
   transition: 0.3s;
 }
@@ -410,14 +411,14 @@ h6 {
 .navbar-mobile a,
 .navbar-mobile a:focus {
   padding: 10px 20px;
-  font-size: 15px;
-  color: #1a1814;
+  font-size: 18px;
+  color: #fffdfa;
 }
 
 .navbar-mobile a:hover,
 .navbar-mobile .active,
 .navbar-mobile li:hover>a {
-  color: #cda45e;
+  color: #6e4d0b;
 }
 
 .navbar-mobile .getstarted,
@@ -465,7 +466,7 @@ h6 {
 #hero {
   width: 100%;
   height: 100vh;
-  background: url("../img/hero-bg.jpg") top center;
+  background: url("../img/1867892.jpg") top center;
   background-size: cover;
   position: relative;
   padding: 0;
@@ -773,7 +774,7 @@ section {
 # About
 --------------------------------------------------------------*/
 .about {
-  background: url("../img/about-bg.jpg") center center;
+  background: url("../img/inline_image_preview.jpg") center center;
   background-size: cover;
   position: relative;
   padding: 80px 0;
@@ -874,17 +875,20 @@ section {
 # Why Us
 --------------------------------------------------------------*/
 .why-us .box {
-  padding: 50px 30px;
+  padding:5px;
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
-  transition: all ease-in-out 0.3s;
-  background: #1a1814;
+    /* transition: all ease-in-out 0.3s; */
+  /* background: #1b1915; */
 }
 
 .why-us .box span {
   display: block;
-  font-size: 28px;
+  font-size: 23px;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-weight: 700;
   color: #cda45e;
+  margin-bottom:1%;
+  margin-left: 25%;
 }
 
 .why-us .box h4 {
@@ -896,23 +900,24 @@ section {
 }
 
 .why-us .box p {
-  color: #aaaaaa;
-  font-size: 15px;
-  margin: 0;
+  color: #8d8d8d;
+  font-size: 17px;
+  font-weight: 700;
+  margin-left:25%;
   padding: 0;
 }
 
-.why-us .box:hover {
+/* .why-us .box:hover {
   background: #cda45e;
   padding: 30px 30px 70px 30px;
   box-shadow: 10px 15px 30px rgba(0, 0, 0, 0.18);
-}
+} */
 
-.why-us .box:hover span,
+/* .why-us .box:hover span,
 .why-us .box:hover h4,
 .why-us .box:hover p {
   color: #fff;
-}
+} */
 
 /*--------------------------------------------------------------
 # Menu Section
@@ -1076,7 +1081,7 @@ section {
 # Events
 --------------------------------------------------------------*/
 .events {
-  background: url(../img/events-bg.jpg) center center no-repeat;
+  background: url(../img/eventsec.jpg) center center no-repeat;
   background-size: cover;
   position: relative;
 }
@@ -1638,11 +1643,11 @@ section {
 
 #footer .footer-top .footer-info h3 {
   font-size: 24px;
-  margin: 0 0 20px 0;
+  margin: 30px 0 0 0;
   padding: 2px 0 2px 0;
   line-height: 1;
-  font-weight: 300;
-  text-transform: uppercase;
+  font-weight: 500;
+  
   font-family: "Poppins", sans-serif;
 }
 
@@ -1650,7 +1655,7 @@ section {
   font-size: 14px;
   line-height: 24px;
   margin-bottom: 0;
-  font-family: "Playfair Display", serif;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #fff;
 }
 

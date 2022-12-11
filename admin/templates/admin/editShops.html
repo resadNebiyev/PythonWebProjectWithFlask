@@ -1,0 +1,26 @@
+<!-- Lahiyənin Enjoy bölməsinin edit edilməsi -->
+{% extends 'admin/layout.html' %}
+{% block content %}
+    
+
+<!-- Enjoy səhifəsindəki form -->
+<div class="card my-2">
+    <div class="card-body">
+      <div class="card-title"><h6>Mağazalar bölməsinin düzəliş edilməsi</h6></div>
+        <p class="card-text">
+            <form action="/admin/shops/edit/{{data.id}}" method="POST" enctype="multipart/form-data">
+                {{myForm.name(class_='form-control my-2 bg-light text-dark', value= data.name )}}
+                {{myForm.location(class_='form-control my-2 bg-light text-dark ', value= data.location)}}
+                {{myForm.time(class_='form-control my-2 bg-light text-dark',value=data.time)}}
+                {{myForm.wpLink(class_='form-control my-2 bg-light text-dark',value=data.wpLink)}}
+                {{myForm.instaLink(class_='form-control my-2 bg-light text-dark',value=data.instaLink)}}
+                {{myForm.map(class_=('form-control my-2 bg-light text-dark'),value=data.map)}}   
+                {{myForm.submit(class_='btn btn-primary')}}
+            </form>
+        </p>
+    </div>
+</div>
+
+
+{% endblock %}
+

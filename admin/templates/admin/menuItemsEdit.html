@@ -7,7 +7,7 @@
 <!-- Add Menu Items -->
 <div class="card my-2">
     <div class="card-body">
-      <div class="card-title"><h6>Add Menu Items </h6></div>
+      <div class="card-title"><h6> Seçilmiş məhsul üzərində dəyişikliklər</h6></div>
         <p class="card-text">
             <form action="/admin/menu-items/edit/{{query.id}}" method="POST">
                 <select name="category" id="">
@@ -40,11 +40,11 @@
                 <thead>
                   <tr>
                     <th scope="col">Id</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Category</th>
-                    <th scope="col">Info</th>
-                    <th scope="col">Actions</th>
+                    <th scope="col">Ad</th>
+                    <th scope="col">Qiymət</th>
+                    <th scope="col">Kateqoriya</th>
+                    <th scope="col">İnfo</th>
+                    <th scope="col">Əməliyyatlar</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -56,7 +56,7 @@
                     <td>{{category.category.name}}</td>
                     <td>{{category.info|safe}}</td>
                     <td>
-                      <a href="/admin/menu-items/delete/{{category.id}}">Delete</a>
+                      <a href="/admin/menu-items/delete/{{category.id}}">edit</a>
                     </td>
                   </tr>
                   {% endfor %}

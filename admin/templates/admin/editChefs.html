@@ -2,16 +2,36 @@
 {% block content %}
 <div class="card my-2">
     <div class="card-body">
-      <div class="card-title"><h6>Add Member</h6></div>
+      <div class="card-title"><h6>Seçilmiş məhsul üzərində dəyişikliklərin edilməsi</h6></div>
         <p class="card-text">
             <form action="/admin/chefs/edit/{{members.id}}" method="POST" enctype="multipart/form-data"> 
                 {{member.name(class_='form-control my-2',placeholder=' Name',value=members.name)}} 
                 {{member.profession(class_='form-control my-2',placeholder='Profession',value=members.profession)}} 
                 {{member.img(class_='form-control my-2',placeholder='Img')}}
-                {{member.info(class_='form-control my-2',placeholder='info')}}
-                {{member.submit(class_='btn btn-primary',value='Add Member')}}
+                {{member.info(class_='form-control my-2',placeholder='info',value=members.info)}}
+                <select name="category" id="category" onchange="displayImage()">
+                    <option value="{{members.img}}">Bazada olan Şəkillər</option>
+                    {% for member in imgs %}
+                    <option value="{{member.img}}">{{member.img}}</option>
+                    {% endfor %}
+                </select><br><br>
+                <img id="imgs" src="/static/uploads/Enjoy Vape 5000+/{{members.img}}" alt="" width="200px" height="200px"><br><br>
+                {{member.submit(class_='btn btn-primary',value='Daxil et')}}
             </form>
         </p>
     </div>
 </div>
+
+
+
+
+<script>
+    function displayImage() {
+        var image = document.getElementById("imgs"),
+            select = document.getElementsByTagName('select')[0];
+        image.src = '/static/uploads/Enjoy Vape 5000+/'+select.value;
+        console.log('set src to ' + select.value);
+    }
+</script>
 {% endblock %}
+

@@ -6,10 +6,10 @@
 <!-- Menu səhifəsindəki form -->
 <div class="card my-2">
     <div class="card-body">
-      <div class="card-title"><h6>Add Menu Category</h6></div>
+      <div class="card-title"><h6>Kateqoriyaların Əlavə Edilməsi</h6></div>
         <p class="card-text">
             <form action="/admin/menu" method="POST">
-                {{myForm.name(class_='form-control my-2',placeholder='Click Here and Write')}}
+                {{myForm.name(class_='form-control my-2',placeholder='Kateqoriya Əlavə Et')}}
                 {{myForm.submit(class_='btn btn-primary')}}
             </form>
         </p>
@@ -19,15 +19,15 @@
   <!-- Menu səhifəsindəki Table -->
   <div class="card">
     <div class="card-body">
-        <div class="card-title">Menu Table</div>
+        <div class="card-title">Kateqoriyalar cədvəli</div>
         <div class="card-text">
             <table class="table table-success">
-                <caption>List of Menu</caption>
+                <caption>Kateqoriya siyahısı</caption>
                 <thead>
                   <tr>
                     <th scope="col">Id</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Actions</th>
+                    <th scope="col">Ad</th>
+                    <th scope="col">Əməliyyatlar</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -36,7 +36,7 @@
                     <th scope="row">{{category.id}}</th>
                     <td>{{category.name}}</td>
                     <td>
-                      <a href="/admin/menu/delete/{{category.id}}" onclick="myFunction()">Delete</a>
+                      <a style="color:red;" href="/admin/menu/delete/{{category.id}}" onclick="myFunction()"><strong> Sil </strong></a>
                     </td>
                   </tr>
                   {% endfor %}

@@ -1,16 +1,17 @@
 {% extends 'admin/layout.html' %}
 {% block content %}
+
     <!-- Members səhifəsindəki form -->
     <div class="card my-2">
         <div class="card-body">
-          <div class="card-title"><h6>Add Member</h6></div>
+          <div class="card-title"><h6>Eloktron Siqaretlərin Əlavə Edilməsi</h6></div>
             <p class="card-text">
                 <form action="/admin/chefs" method="POST" enctype="multipart/form-data"> 
                     {{member.name(class_='form-control my-2',placeholder=' Name')}} 
                     {{member.profession(class_='form-control my-2',placeholder='Profession')}} 
                     {{member.img(class_='form-control my-2',placeholder='Img')}}
                     {{member.info(class_='form-control my-2',placeholder='info')}}
-                    {{member.submit(class_='btn btn-primary',value='Add Member')}}
+                    {{member.submit(class_='btn btn-primary',value='Daxil Et')}}
                 </form>
             </p>
         </div>
@@ -19,18 +20,17 @@
       <!-- Product səhifəsindəki Table -->
       <div class="card">
         <div class="card-body">
-            <div class="card-title">Members Table</div>
+            <div class="card-title">Eloktron Siqaretlərin Siyahısı</div>
             <div class="card-text">
                 <table class="table table-success">
-                    <caption>List of Members</caption>
                     <thead>
                       <tr>
                         <th scope="col">Id</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Profession</th>
-                        <th scope="col">Img</th>
-                        <th scope="col">Info</th>
-                        <th scope="col">Actions</th>
+                        <th scope="col">Ad</th>
+                        <th scope="col">Qiymət</th>
+                        <th scope="col">Şəkil</th>
+                        <th scope="col">Dad</th>
+                        <th scope="col">Əməliyyatlar</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -42,8 +42,9 @@
                         <td>{{member.img}}</td>
                         <td>{{member.info|safe}}</td>
                         <td>
-                          <a href="/admin/chefs/edit/{{member.id}}">Edit</a>
-                          <a href="/admin/chefs/delete/{{member.id}}">Delete</a>
+                          <a  href="/admin/chefs/edit/{{member.id}}">Dəyiş</a>
+                          <span >/</span>
+                          <a style="color:red;" href="/admin/chefs/delete/{{member.id}}">Sil</a>
                         </td>
                       </tr>
                       {% endfor %}

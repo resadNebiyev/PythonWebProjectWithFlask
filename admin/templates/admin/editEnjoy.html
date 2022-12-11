@@ -1,0 +1,43 @@
+<!-- Lahiyənin Enjoy bölməsinin edit edilməsi -->
+{% extends 'admin/layout.html' %}
+{% block content %}
+    
+
+<!-- Enjoy səhifəsindəki form -->
+<div class="card my-2">
+    <div class="card-body">
+      <div class="card-title"><h6>Enjoy Vape bölməsinin doldurulması</h6></div>
+        <p class="card-text">
+            <form action="/admin/enjoy/edit/{{data.id}}" method="POST" enctype="multipart/form-data">
+                {{myForm.name(class_='form-control my-2 bg-light text-dark', value= data.name )}}
+                {{myForm.price(class_='form-control my-2 bg-light text-dark ', value= data.price)}}
+                {{myForm.info(class_='form-control my-2 bg-light text-dark',value=data.info)}}
+                {{myForm.info2(class_='form-control my-2 bg-light text-dark',value=data.info2)}}
+                {{myForm.info3(class_='form-control my-2 bg-light text-dark',value=data.info3)}}
+                {{myForm.img(class_=('form-control my-2 bg-light text-dark'),value=data.img)}}
+                <select name="category" id="category" onchange="displayImage()">
+                    <option value="{{data.img}}">Bazada olan Şəkillər</option>
+                    {% for category in allEnjoy %}
+                    <option value="{{category.img}}">{{category.img}}</option>
+                    {% endfor %}
+                </select><br><br>
+                <img id="imgs" src="/static/uploads/Enjoy/{{data.img}}" alt="" width="200px" height="200px"><br><br>
+                {{myForm.submit(class_='btn btn-primary')}}
+            </form>
+            
+        </p>
+    </div>
+</div>
+
+<script>
+    function displayImage() {
+        var image = document.getElementById("imgs"),
+            select = document.getElementsByTagName('select')[0];
+        image.src = '/static/uploads/Enjoy/'+select.value;
+        console.log('set src to ' + select.value);
+    }
+</script>
+
+
+{% endblock %}
+

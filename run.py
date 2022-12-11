@@ -41,14 +41,11 @@ from app import app_bp
 from app.routes import *
 from admin.routs import *
 from auth.routes import *
-from api.routes import *
 from admin import admin_bp
 from auth import auth_bp
-from api import api_bp
 main.register_blueprint(app_bp)
 main.register_blueprint(admin_bp)
 main.register_blueprint(auth_bp)
-main.register_blueprint(api_bp)
 
 @main.route('/')
 def index():

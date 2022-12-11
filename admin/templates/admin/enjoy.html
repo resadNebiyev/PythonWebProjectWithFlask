@@ -1,0 +1,61 @@
+<!-- Lahiyənin Enjoy bölməsinin kateqoriyalarının view hissəsi -->
+{% extends 'admin/layout.html' %}
+{% block content %}
+    
+
+<!-- Enjoy səhifəsindəki form -->
+<div class="card my-2">
+    <div class="card-body">
+      <div class="card-title"><h6>Enjoy Vape bölməsinin doldurulması</h6></div>
+        <p class="card-text">
+            <form action="/admin/enjoy" method="POST" enctype="multipart/form-data">
+                {{myForm.name(class_='form-control my-2 bg-light text-dark',placeholder='Adı əlavə edin')}}
+                {{myForm.price(class_='form-control my-2 bg-light text-dark',placeholder='qiyməti əlavə edin')}}
+                {{myForm.info(class_='form-control my-2 bg-light text-dark',placeholder='Məhsulun xususiyyətlərini qeyd edin')}}
+                {{myForm.info2(class_='form-control my-2 bg-light text-dark',placeholder='Məhsulun xususiyyətlərini qeyd edin')}}
+                {{myForm.info3(class_='form-control my-2 bg-light text-dark',placeholder='Məhsulun xususiyyətlərini qeyd edin')}}
+                {{myForm.img(class_=('form-control my-2 bg-light text-dark'),placeholder='Add Photo')}}
+                {{myForm.submit(class_='btn btn-primary')}}
+            </form>
+        </p>
+    </div>
+</div>
+
+  <!-- Enjoy Vape səhifəsindəki Table -->
+  <div class="card">
+    <div class="card-body">
+        <div class="card-title">Enjoy Vape</div>
+        <div class="card-text">
+            <table class="table table-success">
+                <thead>
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Ad</th>
+                    <th scope="col">Şəkil</th>
+                    <th scope="col">Qiymət</th>
+                    <th scope="col">Əməliyyatlar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for data in data%}
+                  <tr>
+                    <th scope="row">{{data.id}}</th>
+                    <td>{{data.name}}</td>
+                    <td>
+                        <img  src="/static/uploads/Enjoy/{{data.img}}" alt="" style="width:100px; height:100px; object-fit:cover">
+                    </td>
+                    <td>{{data.price}}</td>
+                    <td>
+                      <a href="/admin/enjoy/edit/{{data.id}}" class="btn stretched-link">Dəyiş</a>
+                      <a href="/admin/enjoy/delete/{{data.id}}" class="btn stretched-link">Sil</a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+

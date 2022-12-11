@@ -14,12 +14,14 @@ class Navlinks(db.Model):
     nav_order = db.Column(db.Integer)
     is_active = db.Column(db.Boolean)
 
-class Testimonials(db.Model):
+class Shops(db.Model):
     id = db.Column(db.Integer,primary_key=True)
     name = db.Column(db.String(200))
-    profession = db.Column(db.String(200))
-    img = db.Column(db.String(200))
-    info = db.Column(db.String(255))
+    location = db.Column(db.String(255))
+    time = db.Column(db.String(200))
+    wpLink = db.Column(db.String(255))
+    instaLink = db.Column(db.String(255))
+    map = db.Column(db.String(255))
     order = db.Column(db.Integer)
     is_active  = db.Column(db.Boolean)
     
@@ -29,11 +31,12 @@ class Category(db.Model):
     name = db.Column(db.String(50))
     order = db.Column(db.Integer)
     categories = db.relationship('CategoryItems', backref='category', lazy=True)
-class CategorySchema(ma.SQLAlchemySchema):
-    class Meta:
-        model:Category
-        fields = ("id","name")
-        include_relationship = True
+    categories2 = db.relationship('PodsItems', backref='category', lazy=True)
+# class CategorySchema(ma.SQLAlchemySchema):
+#     class Meta:
+#         model:Category
+#         fields = ("id","name")
+#         include_relationship = True
     
 
 class CategoryItems(db.Model):
@@ -41,12 +44,21 @@ class CategoryItems(db.Model):
     name = db.Column(db.String(120))
     info = db.Column(db.String(120))
     price = db.Column(db.Integer)
+    img = db.Column(db.String(200))
     category_id = db.Column(db.Integer, db.ForeignKey('category.id'))
-class CategoryItemsSchema(ma.SQLAlchemySchema):
-    class Meta:
-        model:CategoryItems
-        fields = ("id","name","category_id")
-        include_relationship = True
+    
+class PodsItems(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    price = db.Column(db.Integer)
+    info = db.Column(db.String(200))
+    info2 = db.Column(db.String(200)) 
+    img = db.Column(db.String(200))
+    category_id = db.Column(db.Integer, db.ForeignKey('category.id'))
+# class CategoryItemsSchema(ma.SQLAlchemySchema):
+#     class Meta:
+#         model:CategoryItems
+#         fields = ("id","name","category_id")
+#         include_relationship = True
 
 # Lahiyənin Şef bölməsinin  Modelinin yaradılması
 class Member(db.Model):
@@ -92,3 +104,21 @@ class Recommends(db.Model):
     number = db.Column(db.Integer)
     title = db.Column(db.String(150))
     text = db.Column(db.String(200))
+    
+class TopBar(db.Model):
+    id = db.Column(db.Integer,primary_key=True) 
+    number = db.Column(db.Integer)
+    date = db.Column(db.String(200))
+    wpLink = db.Column(db.String(200))
+    insLink = db.Column(db.String(200))
+    tikLink = db.Column(db.String(200))
+    
+class Enjoy(db.Model):
+    id = db.Column(db.Integer,primary_key=True)
+    name = db.Column(db.String(200))
+    price = db.Column(db.String(200))
+    info = db.Column(db.String(200))
+    info2 = db.Column(db.String(200))
+    info3 = db.Column(db.String(200))
+    img = db.Column(db.String(200))
+    

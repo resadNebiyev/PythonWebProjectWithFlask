@@ -15,12 +15,14 @@ class NavLinksForm(FlaskForm):
     submit = SubmitField('Submit')
 
 # Lahiyənin 'Testimonials' hissəsinin formunun yaradilması
-class testimonialForm(FlaskForm):
+class ShopsForm(FlaskForm):
     name = StringField('name')
-    profession = StringField('profession')
-    info = CKEditorField('info')
+    time = StringField('time')
+    location = StringField('location')
+    wpLink = StringField('wpLink')
+    instaLink = StringField('instaLink')
+    map = StringField('map')
     order = IntegerField('order')
-    img = FileField('img')
     is_active = BooleanField('is_active')
     submit = SubmitField('Submit')
 
@@ -29,20 +31,21 @@ class testimonialForm(FlaskForm):
 class MenuForm(FlaskForm):
     name = StringField('name')
     order = IntegerField('order')
-    submit = SubmitField('submit')
+    submit = SubmitField('Daxil et')
     
 class MenuItemsForm(FlaskForm):
     names = StringField('name')
     price = IntegerField('price')
-    info = CKEditorField('info')
-    submit = SubmitField('submit')
+    info = StringField('info')
+    img = FileField('img')
+    submit = SubmitField('Daxil et')
 
 # Lahiyənin Şef bölməsinin Formunun yaradılması
 class MemberForm(FlaskForm):
     name = StringField('name')
     profession = StringField('profession')
     img = FileField('img')
-    info = CKEditorField('info')
+    info = StringField('info')
     submit = SubmitField('submit')
     
 
@@ -64,3 +67,27 @@ class RecommendsForm(FlaskForm):
     title = StringField('title')
     text = StringField('text')
     
+# Lahiyənin baş hissəsi
+class TopBarForm(FlaskForm):
+    number = StringField('number')
+    date = StringField('date')
+    whatsappLink = StringField('wLink')
+    instagramLink = StringField('Ilink')
+    tiktokLink = StringField('Tlink')
+    submit = SubmitField('submit')
+    
+class EnjoyForm(FlaskForm):
+    name = StringField('name')
+    price = StringField('price')
+    info = StringField('info')
+    info2 = StringField('info2')
+    info3 = StringField('info3')
+    img = FileField('img')
+    submit = SubmitField('Daxil et')
+    
+class PodsForm(FlaskForm):
+    price = IntegerField('price')
+    info = CKEditorField('info')
+    info2 = CKEditorField('info')
+    img = FileField('img')
+    submit = SubmitField('Daxil et')

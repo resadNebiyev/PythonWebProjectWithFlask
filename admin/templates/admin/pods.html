@@ -1,0 +1,62 @@
+<!-- Lahiyənin Menu bölməsinin kateqoriyalarının view hissəsi -->
+{% extends 'admin/layout.html' %}
+{% block content %}
+    
+<!-- Add Menu Items -->
+<div class="card my-2">
+    <div class="card-body">
+      <div class="card-title"><h6>Pod Sistemlərinin Əlavə Edilməsi</h6></div>
+        <p class="card-text">
+            <form action="/admin/pods" method="POST" enctype="multipart/form-data">
+                <select name="category" id="">
+                    <option value="#">Kateqoriya seçin</option>
+                {% for category in menu_categories %}
+                    <option value="{{category.id}}">{{category.name}}</option>
+                {% endfor %}
+                </select>
+                {{myForms.price(class_='form-control my-2',placeholder='Qiymət')}}
+                {{myForms.info(class_='form-control my-2',placeholder='Əlavə məlumat')}}
+                {{myForms.info2(class_='form-control my-2',placeholder='Əlavə məlumat')}}
+                {{myForms.img(class_='form-control my-2')}}
+                {{myForms.submit(class_='btn btn-danger')}}
+            </form>
+        </p>
+    </div>
+</div>
+<!-- Menu Items Table -->
+<div class="card">
+    <div class="card-body">
+        <div class="card-title">Saytda Olan Pod Sistemlərin Siyahısı</div>
+        <div class="card-text">
+            <table class="table table-success">
+                <caption></caption>
+                <thead>
+                  <tr>    
+                    <th scope="col">Id</th>
+                    <th scope="col">Ad</th>
+                    <th scope="col">Qiymət</th>
+                    <th scope="col">Şəkil</th>
+                    <th scope="col">Əməliyyatlar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for category in categories%}
+                  <tr>
+                    <th scope="row">{{category.id}}</th>
+                    <td>{{category.category.name}}</td>
+                    <td>{{category.price}}</td>
+                    <td>
+                      <img width="50px" height="50px" src="/static/uploads/PODS/{{category.img}}" alt="">
+                    </td>
+                    <td>
+                      <a style="color:blue;" href="/admin/pods/edit/{{category.id}}">Dəyiş /</a>
+                      <a style="color:red;" href="/admin/pods/delete/{{category.id}}"> Sil</a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
