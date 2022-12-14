@@ -9,9 +9,9 @@
     <div class="card-body">
       <div class="card-title"><h6> Pod Sistemlərin Edit Olunması</h6></div>
         <p class="card-text">
-            <form action="/admin/pods/edit/{{query.id}}" method="POST">
+            <form action="/admin/pods/edit/{{query.id}}" method="POST" enctype="multipart/form-data">
                 <select name="category" id="">
-                    <option value="#">Choose Category</option>
+                    <option value="{{query.category.id}}">{{query.category.name}}</option>
                 {% for category in menu_categories %}
                     <option value="{{category.id}}">{{category.name}}</option>
                 {% endfor %}
@@ -19,6 +19,7 @@
                 {{myForms.price(class_='form-control my-2',placeholder='Price',value=query.price)}}
                 {{myForms.info(class_='form-control my-2',placeholder='Info',value=query.info)}}
                 {{myForms.info2(class_='form-control my-2',placeholder='Info2',value=query.info2)}}
+                {{myForms.img(class_=('form-control my-2 bg-light text-dark'),value=query.img)}}
                 {{myForms.submit(class_='btn btn-danger')}}
             </form>
         </p>

@@ -283,12 +283,12 @@ h6 {
   margin-left: 5px;
 }
 
-.navbar a:hover,
+/* .navbar a:hover,
 .navbar .active,
 .navbar .active:focus,
 .navbar li:hover>a {
   color: #d9ba85;
-}
+} */
 
 .navbar .dropdown ul {
   display: block;
@@ -415,11 +415,11 @@ h6 {
   color: #fffdfa;
 }
 
-.navbar-mobile a:hover,
+/* .navbar-mobile a:hover,
 .navbar-mobile .active,
 .navbar-mobile li:hover>a {
-  color: #6e4d0b;
-}
+  /* color: #6e4d0b; */
+ */
 
 .navbar-mobile .getstarted,
 .navbar-mobile .getstarted:focus {

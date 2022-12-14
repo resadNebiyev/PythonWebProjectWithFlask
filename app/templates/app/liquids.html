@@ -21,7 +21,7 @@
       <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
         {% for element in menuElements %}
         <div class="col-lg-6 menu-item filter-{{element.category.name.lower()}}">
-          <a href="/static/uploads/Liquids/{{element.img}}"><img src="/static/uploads/Liquids/{{element.img}}" class="menu-img" alt=""></a>
+          <a href="/static/uploads/Liquids/{{element.img}}"><img height="60px" src="/static/uploads/Liquids/{{element.img}}" class="menu-img" alt=""></a>
           <div class="menu-content">
             <a href="/static/uploads/Liquids/{{element.img}}">{{element.name}}</a><span>{{element.price}} ₼</span>
           </div>  

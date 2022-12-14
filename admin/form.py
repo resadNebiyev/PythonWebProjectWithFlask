@@ -87,7 +87,7 @@ class EnjoyForm(FlaskForm):
     
 class PodsForm(FlaskForm):
     price = IntegerField('price')
-    info = CKEditorField('info')
-    info2 = CKEditorField('info')
+    info = StringField('info')
+    info2 = StringField('info')
     img = FileField('img')
     submit = SubmitField('Daxil et')

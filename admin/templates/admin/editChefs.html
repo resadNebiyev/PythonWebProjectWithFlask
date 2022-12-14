@@ -10,9 +10,9 @@
                 {{member.img(class_='form-control my-2',placeholder='Img')}}
                 {{member.info(class_='form-control my-2',placeholder='info',value=members.info)}}
                 <select name="category" id="category" onchange="displayImage()">
-                    <option value="{{members.img}}">Bazada olan Şəkillər</option>
-                    {% for member in imgs %}
-                    <option value="{{member.img}}">{{member.img}}</option>
+                    <option value="">Bazada olan Şəkillər</option>
+                    {% for member in my_list %}
+                    <option value="{{member}}">{{member}}</option>
                     {% endfor %}
                 </select><br><br>
                 <img id="imgs" src="/static/uploads/Enjoy Vape 5000+/{{members.img}}" alt="" width="200px" height="200px"><br><br>

@@ -17,8 +17,8 @@
                 {{myForm.img(class_=('form-control my-2 bg-light text-dark'),value=data.img)}}
                 <select name="category" id="category" onchange="displayImage()">
                     <option value="{{data.img}}">Bazada olan Şəkillər</option>
-                    {% for category in allEnjoy %}
-                    <option value="{{category.img}}">{{category.img}}</option>
+                    {% for item in my_list %}
+                    <option value="{{item}}">{{item}}</option>
                     {% endfor %}
                 </select><br><br>
                 <img id="imgs" src="/static/uploads/Enjoy/{{data.img}}" alt="" width="200px" height="200px"><br><br>

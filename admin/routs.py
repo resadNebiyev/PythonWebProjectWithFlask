@@ -192,8 +192,7 @@ def PodItems():
             filename = secure_filename(file.filename)
             extension = filename.rsplit('.',1)[1]
             new_filename = f'POD-{random.randint(1,100)}.{extension}'
-            new_folder = 'PODS'
-            file.save(os.path.join(f'../PythonWebProjectWithFlasks/static/uploads/{new_folder}',new_filename))
+            file.save(os.path.join(f'../PythonWebProjectWithFlasks/static/uploads/PODS',new_filename))
             img = new_filename
             item = PodsItems(info=info,info2=info2,price=price,category_id=categoryId,img=img)
             db.session.add(item)
@@ -215,7 +214,7 @@ def edit_menu(id):
         query.name=myForms.names.data
         query.price=myForms.price.data
         query.info=myForms.info.data
-        query.category_id=categoryId
+        query.category_id=categoryId          
         db.session.commit()
         return redirect('/admin/menu-items')
     return render_template('admin/menuItemsEdit.html',query=query,myForms=myForms,menu_categories=menu_categories)
@@ -235,6 +234,13 @@ def edit_pods(id):
             query.info=myForms.info.data
             query.info2=myForms.info2.data
         query.category_id=categoryId
+        file = request.files['img'] 
+        if file:
+            filename = secure_filename(file.filename)
+            extension = filename.rsplit('.',1)[1]
+            new_filename = f'POD-{random.randint(1,100)}.{extension}'
+            file.save(os.path.join(f'../PythonWebProjectWithFlasks/static/uploads/PODS',new_filename))
+            query.img = new_filename
         db.session.commit()
         return redirect('/admin/pods')
     return render_template('admin/editPods.html',query=query,myForms=myForms,menu_categories=menu_categories)
@@ -305,26 +311,28 @@ def chefs_edit(id):
     member = MemberForm()
     members = Member.query.get(id)
     imgs = Member.query.all()
+    my_list = []
+    file_scr = './static/uploads/Enjoy Vape 5000+/'
+    for x in os.listdir(file_scr):
+        my_list.append(os.path.basename(x))
     if request.method=='POST':
         members.name = member.name.data
         members.profession = member.profession.data
         members.info = member.info.data
         file = request.files['img']
-        filename = secure_filename(file.filename)
-        extension = filename.rsplit('.',1)[1]
-        new_filename = f'Member-{random.randint(1,100)}.{extension}'
-        path = f"C:\\Users\\user\\Documents\\PythonWebProjectWithFlasks\\static\\uploads"
-        os.chdir(path)
-        if os.path.exists("{path}/{members.name}"):
-            file.save(os.path.join(f"C:\\Users\\user\\Documents\\PythonWebProjectWithFlasks\\static\\uploads\\{members.name}",new_filename))
+        if file:
+            filename = secure_filename(file.filename)
+            extension = filename.rsplit('.',1)[1]
+            new_filename = f'Member-{random.randint(1,100)}.{extension}'
+            path = f"C:\\Users\\user\\Documents\\PythonWebProjectWithFlasks\\static\\uploads"
+            os.chdir(path)
+            file.save(os.path.join(f"C:\\Users\\user\\Documents\\PythonWebProjectWithFlasks\\static\\uploads\\Enjoy Vape 5000+",new_filename))
+            members.img = new_filename
         else:
-            new_folder = f'{members.name}'
-            os.mkdir(new_folder)
-            file.save(os.path.join(f"C:\\Users\\user\\Documents\\PythonWebProjectWithFlasks\\static\\uploads\\{members.name}",new_filename))
-        members.img = new_filename
+            members.img = request.form.get('category')
         db.session.commit()
         return redirect('/admin/chefs')
-    return render_template('/admin/editChefs.html',member=member,members=members,imgs=imgs) 
+    return render_template('/admin/editChefs.html',member=member,members=members,imgs=imgs,my_list=my_list) 
 
 
 
@@ -439,6 +447,10 @@ def enjoy_edit(id):
     myForm = EnjoyForm()
     enjoy= Enjoy.query.get(id)
     allEnjoy = Enjoy.query.all()
+    my_list = []
+    file_scr = './static/uploads/Enjoy/'
+    for x in os.listdir(file_scr):
+        my_list.append(os.path.basename(x))
     if request.method=='POST':
         enjoy.name = myForm.name.data
         enjoy.price = myForm.price.data
@@ -457,7 +469,7 @@ def enjoy_edit(id):
             enjoy.img = request.form.get('category')
         db.session.commit()
         return redirect('/admin/enjoy')
-    return render_template('/admin/editEnjoy.html',myForm=myForm,data=enjoy,allEnjoy=allEnjoy) 
+    return render_template('/admin/editEnjoy.html',myForm=myForm,data=enjoy,allEnjoy=allEnjoy,my_list=my_list) 
 
 
 

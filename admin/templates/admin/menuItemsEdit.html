@@ -11,7 +11,7 @@
         <p class="card-text">
             <form action="/admin/menu-items/edit/{{query.id}}" method="POST">
                 <select name="category" id="">
-                    <option value="#">Choose Category</option>
+                    <option value="{{query.category.id}}">{{query.category.name}}</option>
                 {% for category in menu_categories %}
                     <option value="{{category.id}}">{{category.name}}</option>
                 {% endfor %}
