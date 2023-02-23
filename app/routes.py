@@ -25,7 +25,7 @@ def member_img(id):
 def liquids():
     from model import Navlinks,Category,CategoryItems,Member,TopBar,Enjoy
     navlinks = Navlinks.query.filter_by(is_active=True).order_by(Navlinks.nav_order).all()
-    menu = Category.query.order_by(Category.order).all()
+    menu = Category.query.all()
     menuElements = CategoryItems.query.all()
     members = Member.query.all()
     topbar = TopBar.query.all()
