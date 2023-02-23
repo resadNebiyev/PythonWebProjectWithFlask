@@ -1,0 +1,15 @@
+C:\Users\user\source\repos\DailyWorks\DailyWorks\bin\Debug\net6.0\DailyWorks.exe
+C:\Users\user\source\repos\DailyWorks\DailyWorks\bin\Debug\net6.0\DailyWorks.deps.json
+C:\Users\user\source\repos\DailyWorks\DailyWorks\bin\Debug\net6.0\DailyWorks.runtimeconfig.json
+C:\Users\user\source\repos\DailyWorks\DailyWorks\bin\Debug\net6.0\DailyWorks.dll
+C:\Users\user\source\repos\DailyWorks\DailyWorks\bin\Debug\net6.0\DailyWorks.pdb
+C:\Users\user\source\repos\DailyWorks\DailyWorks\obj\Debug\net6.0\DailyWorks.csproj.AssemblyReference.cache
+C:\Users\user\source\repos\DailyWorks\DailyWorks\obj\Debug\net6.0\DailyWorks.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\source\repos\DailyWorks\DailyWorks\obj\Debug\net6.0\DailyWorks.AssemblyInfoInputs.cache
+C:\Users\user\source\repos\DailyWorks\DailyWorks\obj\Debug\net6.0\DailyWorks.AssemblyInfo.cs
+C:\Users\user\source\repos\DailyWorks\DailyWorks\obj\Debug\net6.0\DailyWorks.csproj.CoreCompileInputs.cache
+C:\Users\user\source\repos\DailyWorks\DailyWorks\obj\Debug\net6.0\DailyWorks.dll
+C:\Users\user\source\repos\DailyWorks\DailyWorks\obj\Debug\net6.0\refint\DailyWorks.dll
+C:\Users\user\source\repos\DailyWorks\DailyWorks\obj\Debug\net6.0\DailyWorks.pdb
+C:\Users\user\source\repos\DailyWorks\DailyWorks\obj\Debug\net6.0\DailyWorks.genruntimeconfig.cache
+C:\Users\user\source\repos\DailyWorks\DailyWorks\obj\Debug\net6.0\ref\DailyWorks.dll
